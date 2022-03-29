@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head><title>Phaser Test </title></head>
+<body>
+<script src= "https://cdnjs.cloudflare.com/ajax/libs/phaser/3.52.0/phaser.min.js"></script>
+<script>
+const scene_w =640;
+const scene_h = 480;
+
+const config = {
+
+type: Phaser.AUTO,
+width: scene_w,
+height: scene_h,
+scene: {
+preload: preload,
+create: create,
+update: update
+	}
+}
+
+let game = new Phaser.Game(config);
+
+let ball;
+let ball_r = 20;
+let ball_dir = 1;
+
+let up;
+let down;
+let left;
+let right;
+function preload (){
+
+}
+
+function create (){
+
+ball= this.add.circle(scene_w/2,scene_h/2,ball_r, 0x6666ff).setOrigin(0.5,0.5);
+
+texto = this.add.text(scene_w/2,scene_h/2+64, "cacatua",{
+color:'#ff6666',
+fontSize:'64px',
+fontWeight:'bold',
+fontStyle:'italic'}).setOrigin(0.5,0.5);
+
+left= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+right= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+up= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+down= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+
+}
+
+function update(){
+/* if ((ball.x + ball_r/2) >= scene_w ||(ball.x - ball_r/2) <= 0)
+ ball_dir = -ball_dir;
+ 
+ ball.x += ball_dir;
+*/
+
+if(left.isDown){
+
+ball.x--;
+}
+if(right.isDown){
+
+ball.x++;
+}
+if(up.isDown){
+
+ball.y--;
+}
+if(down.isDown){
+
+ball.y++;
+}
+
+}
+
+</script>
+</body>
+</html>
